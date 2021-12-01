@@ -15,12 +15,12 @@ class PageSlider extends Component {
     this._hasDoneInitialScroll = false;
   }
 
-  componentDidMount() {
+  scrollToInitialPosition = () => {
     if (Platform.OS === 'ios' && this.props.selectedPage) {
       // Doesn't work in Android
       this._scrollToPage(this.props.selectedPage, false);
     }
-  }
+  };
 
   componentDidUpdate(prevProps) {
     const currentPage = this._getCurrentPage();
@@ -142,6 +142,10 @@ class PageSlider extends Component {
       );
     });
 
+    if (Platform.OS === 'ios') {
+
+    }
+
     return (
       <ScrollView
         style={style}
@@ -155,6 +159,7 @@ class PageSlider extends Component {
         onScroll={this.onScroll}
         onMomentumScrollEnd={this.onMomentumScrollEnd}
         scrollEventThrottle={8}
+        {...(Platform.OS === 'ios' ? {onLayout: this.scrollToInitialPosition} : {})}
         {...scrollViewProps}
       >
         {pages}
