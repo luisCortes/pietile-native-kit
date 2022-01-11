@@ -88,7 +88,7 @@ class PageSlider extends Component {
   };
 
   render() {
-    const { children, mode, style } = this.props;
+    const { children, mode, style, keyboardShouldPersistTaps } = this.props;
     const { width } = Dimensions.get('screen');
 
     const pageStyle = {
@@ -142,10 +142,6 @@ class PageSlider extends Component {
       );
     });
 
-    if (Platform.OS === 'ios') {
-
-    }
-
     return (
       <ScrollView
         style={style}
@@ -160,6 +156,7 @@ class PageSlider extends Component {
         onMomentumScrollEnd={this.onMomentumScrollEnd}
         scrollEventThrottle={8}
         {...(Platform.OS === 'ios' ? {onLayout: this.scrollToInitialPosition} : {})}
+        {...(keyboardShouldPersistTaps ? {keyboardShouldPersistTaps: keyboardShouldPersistTaps} : {})}
         {...scrollViewProps}
       >
         {pages}
