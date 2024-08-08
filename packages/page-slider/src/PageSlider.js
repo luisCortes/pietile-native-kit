@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
-import { Dimensions, Platform, ScrollView, View, ViewPropTypes } from 'react-native';
+import { Dimensions, Platform, ScrollView, View } from 'react-native';
 
 class PageSlider extends Component {
   constructor(props) {
@@ -174,7 +174,7 @@ PageSlider.propTypes = {
   pageMargin: PropTypes.number,
   peek: PropTypes.number,
   selectedPage: PropTypes.number,
-  style: ViewPropTypes.style,
+  style: PropTypes.object,
 };
 
 PageSlider.defaultProps = {
